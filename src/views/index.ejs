@@ -1,4 +1,4 @@
-<%- include('header') %>
+<%- include('header') %> <%- include('transactions', {account; account}) %>
 
 <div class="container">
   <h1><%= title %></h1>
@@ -7,4 +7,6 @@
   <a href="/transfer">Transfer</a>
 </div>
 
-<%- include('footer') %>
+<%- include('summary', {account: accounts.saving}) %> <%- include('summary',
+{account: accounts.checking}) %> <%- include('summary', {account:
+accounts.credit}) %> <%- include('footer') %>
