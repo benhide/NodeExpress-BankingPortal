@@ -61,7 +61,9 @@ app.post("/transfer", (request, response) => {
   const accountsJSON = JSON.stringify(accounts, null, 4);
 
   fs.writeFileSync(
-    path.join(__dirname, "json/accounts.json", accountsJSON, "utf8")
+    path.join(__dirname, "json/accounts.json"),
+    accountsJSON,
+    "utf8"
   );
 
   response.render("transfer", { message: "Transfer Completed" });
@@ -82,7 +84,7 @@ app.post("/payment", (request, response) => {
     accountsJSON,
     "utf8"
   );
-  response.render("payments", {
+  response.render("payment", {
     message: "Payment Successful",
     account: accounts.credit
   });
