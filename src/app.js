@@ -1,7 +1,7 @@
 const path = require("path");
 const express = require("express");
-const accountsRoutes = require("./routes/accounts");
-const serviceRoutes = require("./routes/services");
+const accountRoutes = require("./routes/accounts");
+const servicesRoutes = require("./routes/services");
 
 const app = express();
 
@@ -14,8 +14,16 @@ app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/account", accountsRoutes);
-app.use("/service", serviceRoutes);
+app.get("/", (request, response) => {
+  response.render("index", { title: "Account Summary", accounts });
+});
+
+app.use("/account", accountRoutes);
+app.use("/services", servicesRoutes);
+
+app.get("/profile", (request, response) => {
+  response.render("profile", { user: users[0] });
+});
 
 // LISTNER **********************************************************
 app.listen(3000, () => {

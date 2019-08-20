@@ -4,15 +4,6 @@ const router = express.Router();
 
 const { accounts, writeJSON } = require("../data");
 
-// ROUTES ************************************************************
-router.get("/", (request, response) => {
-  response.render("index", { title: "Account Summary", accounts });
-});
-
-router.get("/profile", (request, response) => {
-  response.render("profile", { user: users[0] });
-});
-
 // TRANSFER ROUTES **************************************************
 router.get("/transfer", (request, response) => {
   response.render("transfer");
