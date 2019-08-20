@@ -10,7 +10,8 @@ app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 
 const accountData = fs.readFileSync(
-  path.join(__dirname, "json", "accounts.json", "utf8")
+  path.join(__dirname, "json", "accounts.json"),
+  "utf8"
 );
 const accounts = JSON.parse(accountData);
 
@@ -18,26 +19,26 @@ const userData = fs.readFileSync(
   path.join(__dirname, "json", "users.json"),
   "utf8"
 );
-const user = JSON.parse(userData);
+const users = JSON.parse(userData);
 
 app.get("/", (request, response) => {
-  response.render("index", { title: "Account Summary", accounts: "accounts" });
+  response.render("index", { title: "Account Summary", accounts });
 });
 
 app.get("/savings", (request, response) => {
-  response.render("account", { account: "accounts.savings" });
+  response.render("account", { account: accounts.savings });
 });
 
 app.get("/checking", (request, response) => {
-  response.render("account", { account: "accounts.checking" });
+  response.render("account", { account: accounts.checking });
 });
 
 app.get("/credit", (request, response) => {
-  response.render("account", { account: "accounts.credit" });
+  response.render("account", { account: accounts.credit });
 });
 
 app.get("/profile", (request, response) => {
-  response.render("profile", { user: user[0] });
+  response.render("profile", { user: users[0] });
 });
 
 app.listen(3000, () => {
